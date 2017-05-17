@@ -89,7 +89,7 @@ public class Player : NetworkBehaviour {
 			if (left) {
 				CmdFireMissile(this.netId, tf.TransformPoint(g.MissileLaunchFrom), rotation, _Rb.velocity, 0);
 			} else {
-				CmdFireGrenade(this.netId, position, this.transform.rotation, _Rb.velocity + toMousePosition * g.BombSpeed, 0);
+				CmdFireGrenade(this.netId, position, this.transform.rotation, _Rb.velocity + toMousePosition * g.GrenadeSpeed, 0);
 			}
 		}
 	}

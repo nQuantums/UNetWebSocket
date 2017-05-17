@@ -10,7 +10,7 @@ UNETを構成するクラスが多くていまいちわからなかったので�
 - 装甲車（？）を操作し、ミサイル＆グレネードを発射して挙動を確認できます。
 
 ## デモ画面
-[テスト用サイト](http://www.nquantums.net/webgl/) ※いつ止めるかわかりません
+[テスト用サイト](http://www.nquantums.net/webgl/) ※サーバーいつ止めるかわかりません
 
 ![](./doc/fig1.png)
 
@@ -55,16 +55,21 @@ UNETを構成するクラスが多くていまいちわからなかったので�
 		2. 上記の _client.[RegisterHandler](https://docs.unity3d.com/ScriptReference/Networking.NetworkClient.RegisterHandler.html) で登録した OnClientConnected 内で [ClientScene](https://docs.unity3d.com/ScriptReference/Networking.ClientScene.html).[Ready](https://docs.unity3d.com/ScriptReference/Networking.ClientScene.Ready.html)(netMsg.conn) 呼び出してサーバーにクライアント側の準備ができたことを通知。
 		3. [ClientScene](https://docs.unity3d.com/ScriptReference/Networking.ClientScene.html).[AddPlayer](https://docs.unity3d.com/ScriptReference/Networking.ClientScene.AddPlayer.html)(0) を呼び出してクライアント接続毎のID登録。
 
-## Usage
+## 使い方
 
-	python ./train.py CycleGAN
+### Linuxでのサーバー起動例
 
-## Contribution
+	sudo nohup ./UNetWebSocket.x86_64 -server -batchmode -nographics -logfile ulog.txt > out.log 2> err.log < /dev/null &
 
-## Licence
+## ソースコード説明
+- [Global](./Assets/scripts/Global.cs) クラス： プログラム全体からアクセスするようなものをまとめた。
+- [Server](./Assets/scripts/Server.cs) クラス： サーバーとしての接続待ち受け処理など。
+- [Client](./Assets/scripts/Client.cs) クラス： サーバーへ接続する処理＆サーバーからのメッセージ処理。
+- [Player](./Assets/scripts/Player.cs) クラス： 自機の操作など。
+- [Gimmick](./Assets/scripts/Gimmick.cs) クラス： ギミックの初期位置の記憶処理など。
 
+## ライセンス
 [MIT](LICENCE.txt)
 
-## Author
-
+## 作者
 [nQuantums](https://github.com/nQuantums)
