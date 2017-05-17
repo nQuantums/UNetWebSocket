@@ -14,6 +14,7 @@ public class Gimmick : NetworkBehaviour {
 
 	Vector3 _InitialPosition;
 	Quaternion _InitialRotation;
+	Vector3 _InitialScale;
 
 
 	/// <summary>
@@ -26,6 +27,7 @@ public class Gimmick : NetworkBehaviour {
 		var tf = this.transform;
 		_InitialPosition = tf.position;
 		_InitialRotation = tf.rotation;
+		_InitialScale = tf.localScale;
 	}
 
 	/// <summary>
@@ -36,7 +38,10 @@ public class Gimmick : NetworkBehaviour {
 		var rb = this.GetComponent<Rigidbody2D>();
 		tf.position = _InitialPosition;
 		tf.rotation = _InitialRotation;
-		rb.velocity = new Vector2();
-		rb.angularVelocity = 0f;
+		tf.localScale = _InitialScale;
+		if (rb != null) {
+			rb.velocity = new Vector2();
+			rb.angularVelocity = 0f;
+		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
 /// <summary>
 /// サーバー側の管理処理を行う、シーンに配置した<see cref="NetworkIdentity"/>コンポーネントを持つオブジェクトのルート
 /// <para>シーンに配置した<see cref="NetworkIdentity"/>コンポーネントを持つオブジェクトは勝手に inactive になってるので、サーバー側初期化時に自前で activate して<see cref="NetworkServer.Spawn"/>を呼び出す必要がある。</para>

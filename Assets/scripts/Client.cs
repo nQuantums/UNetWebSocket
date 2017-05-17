@@ -59,19 +59,16 @@ public class Client : MonoBehaviourSingleton<Client> {
 
 		// ギミック無効化要求ハンドラ登録
 		_Client.RegisterHandler(
-			MyMsgType.DisableGimmick, 
+			MyMsgType.DisableGimmick,
 			(netMsg) => {
 				var gimmicks = Server.Instance.GetComponentsInChildren<Gimmick>(true);
 				for (int i = 0; i < gimmicks.Length; i++) {
 					var gimmick = gimmicks[i];
 					var c = gimmick.GetComponent<Collider2D>();
 					if (c != null)
-						c.enabled = false;
-					//var ntf = gimmick.GetComponent<NetworkTransform>();
-					//if (ntf != null)
-					//	ntf.enabled = false;
+						c.enabled = false; // 一旦衝突判定を無効化しておかないとクライアント側で正しい初期位置に戻ってくれない
 					gimmick.gameObject.SetActive(false);
-					gimmick.Initialize();
+					//gimmick.Initialize();
 				}
 			}
 		);
@@ -97,9 +94,6 @@ public class Client : MonoBehaviourSingleton<Client> {
 					var c = gimmick.GetComponent<Collider2D>();
 					if (c != null)
 						c.enabled = true;
-					//var ntf = gimmick.GetComponent<NetworkTransform>();
-					//if (ntf != null)
-					//	ntf.enabled = true;
 				}
 			}
 		);
